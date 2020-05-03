@@ -1,0 +1,62 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3>マイページ</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-2 col-xs-offset-1">
+			<%= attachment_image_tag(@user, :profile_image, size: "200x200", fallback: "no_image.png") %>
+		</div>
+		<div class="col-xs-8 col-xs-offset-1">
+			<div class="row">
+				<div class="col-xs-2 ">
+					<div>名前</div>
+				</div>
+				<div class="col-xs-6">
+					<%= @user.name %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 ">
+					<div>自己紹介</div>
+				</div>
+				<div class="col-xs-6">
+					<%= @user.introduction %>
+				</div>
+			</div>
+
+					<% if @user.id != current_user.id %>
+			      <% if current_user.following?(@user) %>
+    				<%= link_to 'フォロー外す', unfollow_path(@user.id), method: :delete %>
+  				  <% else %>
+    				<%= link_to 'フォローする', follow_path(@user.id), method: :post %>
+  				  <% end %>
+      		<% end %>
+
+      		<%= link_to "フォロー一覧", follows_path(@user) %>
+      		<%= link_to "フォロワー一覧", followers_path(@user) %>
+				<%= link_to "編集", edit_user_path(@user) %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<table>
+				<tbody>
+					<% @posts.each do |post| %>
+					<td>
+						<div class="topbox">
+							<%= link_to post_path(post) do %>
+							<%= attachment_image_tag(post, :image, size: "200x200") %>
+							<% end %>
+						</div>
+							<%= post.title %>
+					</td>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

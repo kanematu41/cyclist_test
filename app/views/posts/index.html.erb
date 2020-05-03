@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3>投稿一覧</h3>
+
+			<table>
+				<tbody>
+					<% @posts.each do |post| %>
+					<td>
+						<div class="topbox">
+							<%= link_to post_path(post) do %>
+							<%= attachment_image_tag(post, :image, size: "200x200") %>
+							<% end %>
+						</div>
+							<%= post.title %>
+					</td>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

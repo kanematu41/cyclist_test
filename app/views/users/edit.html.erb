@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h2>編集</h2>
+
+			<%= form_for(@user) do|f| %>
+
+			<div class="field">
+				<%= f.label :名前 %>
+				<%= f.text_field :name %>
+			</div>
+
+			<div class="field">
+				<%= f.label :写真変更 %>
+				<%= f.attachment_field :profile_image %>
+			</div>
+
+			<div class="field">
+				<%= f.label :自己紹介 %>
+				<%= f.text_area :introduction %>
+			</div>
+
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+
+			<% end %>
+		</div>
+	</div>
+</div>
