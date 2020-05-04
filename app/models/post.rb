@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
-	attachment :image
+	mount_uploaders :image, ImageUploader #carrierwave関連
+	serialize :image
+	
 	belongs_to :user
 	has_many :comments, dependent: :destroy
 	has_many :likes, dependent: :destroy
